@@ -5,6 +5,7 @@ import { ToolInterface } from './components/ToolInterface';
 import { SampleImage } from './components/SampleImage';
 import { LoginModal } from './components/LoginModal';
 import { SettingsModal } from './components/SettingsModal';
+import { Footer } from './components/Footer';
 
 export default function App() {
   const [generatedImage, setGeneratedImage] = useState<string>('');
@@ -34,6 +35,7 @@ export default function App() {
 
       <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+      <Footer />
     </div>
   );
 }
