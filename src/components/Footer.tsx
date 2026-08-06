@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col items-center sm:items-start gap-4">
           <img src="/logo.png" alt="JRP Crew Logo" className="h-12 w-auto" />
           <p className="text-on-surface-variant text-sm text-center sm:text-left max-w-xs">
-            Turn your favorite photos into awesome Lego brick artworks instantly.
+            If you love playing with bricks, come find us on our socials!
           </p>
         </div>
         

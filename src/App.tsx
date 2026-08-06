@@ -24,7 +24,7 @@ export default function App() {
             <span className="text-2xl md:text-4xl font-semibold mt-3 block text-on-surface-variant">Turn Any Photo into Lego Art</span>
           </h1>
           <p className="text-on-surface-variant max-w-2xl mx-auto text-lg leading-relaxed mt-6">
-            Easy, free, and fun. JRP Crew - Brickmine turns your selfies, portraits, pets, or landscapes into vibrant, pixelated Lego artworks in seconds. Upload your picture and discover the joy of creating Lego art online!
+            Unleash your inner master builder! JRP Crew - Brickmine magically transforms your photos into stunning, brick-tastic masterpieces. Snap, upload, and watch your world get built brick by brick!
           </p>
           
           <ToolInterface onImageGenerated={setGeneratedImage} />
