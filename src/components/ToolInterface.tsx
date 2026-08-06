@@ -172,8 +172,11 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
           </div>
         </div>
         
-        <div className="flex items-center justify-between py-2">
-          <span className="text-sm font-medium text-on-surface">Customize Prompt</span>
+        <div 
+          className="flex items-center justify-between py-2 cursor-pointer"
+          onClick={() => setCustomizePrompt(!customizePrompt)}
+        >
+          <span className="text-sm font-medium text-on-surface select-none">Customize Prompt</span>
           <button
             type="button"
             className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
@@ -181,7 +184,10 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
             }`}
             role="switch"
             aria-checked={customizePrompt}
-            onClick={() => setCustomizePrompt(!customizePrompt)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setCustomizePrompt(!customizePrompt);
+            }}
           >
             <span
               aria-hidden="true"
@@ -192,13 +198,17 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
           </button>
         </div>
         {customizePrompt && (
-          <div className="mt-2">
+          <div className="mt-2 relative">
             <textarea
               value={customPromptText}
               onChange={(e) => setCustomPromptText(e.target.value)}
               placeholder="E.g., Make it look like a rainy day in a cyberpunk city..."
-              className="w-full px-4 py-3 text-sm border border-outline-variant focus:outline-none focus:ring-primary focus:border-primary rounded-xl bg-surface-container-low text-on-surface resize-y min-h-[80px]"
+              maxLength={100}
+              className="w-full px-4 py-3 pb-8 text-sm border border-outline-variant focus:outline-none focus:ring-primary focus:border-primary rounded-xl bg-surface-container-low text-on-surface resize-y min-h-[80px]"
             />
+            <div className="absolute bottom-4 right-3 text-xs text-on-surface-variant">
+              {customPromptText.length}/100
+            </div>
           </div>
         )}
       </div>
