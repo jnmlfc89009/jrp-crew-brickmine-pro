@@ -66,7 +66,7 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
         <label className="block text-sm font-medium text-on-surface mb-2">Model</label>
         <div className="relative">
           <select className="block w-full pl-10 pr-10 py-3 text-base border border-outline-variant focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-xl appearance-none bg-surface-container-low cursor-pointer text-on-surface">
-            <option>GPT-4o</option>
+            <option>gemini-3.1-flash-lite-image</option>
           </select>
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Bot className="h-5 w-5 text-on-surface-variant" />
