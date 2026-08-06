@@ -62,7 +62,7 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
   const limitReached = generationCount >= 3;
 
   return (
-    <div className="bg-surface-container-lowest rounded-3xl p-8 sm:p-10 shadow-xl border border-outline/20 text-left w-full mt-12 font-label">
+    <div className="bg-surface-container-lowest rounded-3xl p-5 sm:p-10 shadow-xl border border-outline/20 text-left w-full mt-8 sm:mt-12 font-label">
       {/* Model Selection */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-on-surface mb-2">Model</label>
@@ -120,7 +120,7 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
       {/* Style Selection */}
       <div className="mb-6">
         <label className="block text-sm font-medium text-on-surface mb-4">Choose image style</label>
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-5">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-5">
           {STYLES.map((style) => {
             const isSelected = selectedStyle === style.id;
             return (
@@ -130,7 +130,7 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
                 className="flex flex-col items-center gap-3 group cursor-pointer"
                 type="button"
               >
-                <div className={`w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-offset-2 ring-offset-surface-container-lowest transition-all flex items-center justify-center ${isSelected ? 'ring-primary scale-105 shadow-md' : 'ring-transparent group-hover:ring-primary/30 group-hover:scale-105'} ${!style.src ? 'bg-secondary-container' : ''}`}>
+                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden ring-2 ring-offset-2 ring-offset-surface-container-lowest transition-all flex items-center justify-center ${isSelected ? 'ring-primary scale-105 shadow-md' : 'ring-transparent group-hover:ring-primary/30 group-hover:scale-105'} ${!style.src ? 'bg-secondary-container' : ''}`}>
                   {style.src ? (
                     <img 
                       src={style.src} 

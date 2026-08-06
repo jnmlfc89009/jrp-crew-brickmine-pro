@@ -16,8 +16,8 @@ export default function App() {
     <div className="min-h-screen flex flex-col font-body bg-background text-on-background">
       <Banner onLoginClick={() => setIsLoginOpen(true)} />
       <Header onLoginClick={() => setIsLoginOpen(true)} onSettingsClick={() => setIsSettingsOpen(true)} />
-      <main className="flex-grow flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full gap-16">
-        <section className="w-full text-center space-y-6 mt-4">
+      <main className="flex-grow flex flex-col items-center py-6 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full gap-10 sm:gap-16">
+        <section className="w-full text-center space-y-4 sm:space-y-6 mt-2 sm:mt-4">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight text-on-surface font-headline tracking-tight">
             <span className="text-tertiary">Photo</span> to <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-br from-secondary to-tertiary">Brick</span>
             <br />
