@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { Banner } from './components/Banner';
 import { Header } from './components/Header';
 import { ToolInterface } from './components/ToolInterface';
 import { SampleImage } from './components/SampleImage';
 
 export default function App() {
+  const [generatedImage, setGeneratedImage] = useState<string>('');
+
   return (
     <div className="min-h-screen flex flex-col font-body bg-background text-on-background">
       <Banner />
@@ -19,10 +22,10 @@ export default function App() {
             Easy, free, and fun. JRP Crew - Brickmine turns your selfies, portraits, pets, or landscapes into vibrant, pixelated Lego artworks in seconds. Upload your picture and discover the joy of creating Lego art online!
           </p>
           
-          <ToolInterface />
+          <ToolInterface onImageGenerated={setGeneratedImage} />
         </section>
         
-        <SampleImage />
+        <SampleImage src={generatedImage} />
       </main>
     </div>
   );

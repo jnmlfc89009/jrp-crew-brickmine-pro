@@ -8,4 +8,4 @@ export const STYLES = [
   { id: 'illustration', label: 'Illustration', src: 'https://lh3.googleusercontent.com/aida/AP1WRLtoG7UwCI4ENOY99wG1Zb2mJ_zJ1xCD_ZTU3xLRc7IeLsNP_64dl7YiJfWEjoy6tX0CpNvocSqZhE7qkwQ8ugLCF9qeGSXiFxPWvg2oNzFDA7x1wN3rnnzM0e1aO34bNxWTII0two_jGPxjq-9ro6G2yCUnHyNwy8tjKDrOW9pqCWaPYgLCon0ptReRavoo2CMRa6c0Xv0szV9ZRNWjQQmTVVA5Vpt_B485zckXcRLiKIqFnX5WIivC9bs' }
 ];
 
-export const SAMPLE_IMAGE = 'https://lh3.googleusercontent.com/aida/AP1WRLsyiN1nCTBoa9ABhj_Wr2c90kOum34Bl61i7VSUDaDxpIlSINtPbqiebaleM8i5PuHrlcyvdnJHwgXr6BuIq6XZ2JBfWNmyu4ZJzusdGrhi_yTgzbkAWfXw4VSUol76vnHaGMfMOZ-F1WW4XLe2HGrL_39ie6iIqDBkPaxddpmGcAqUt_4c3c1qAfYMo370ZHQTuMK6H4FtRmipibj5kLYQJZF0LlaWCI2nQeC-KMxZXRH2CVBFLanzdmk';
+export const SAMPLE_IMAGE = '/sample-lego.png';

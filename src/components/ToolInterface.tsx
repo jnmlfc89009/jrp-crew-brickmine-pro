@@ -1,24 +1,59 @@
 import { useState, useRef } from 'react';
-import { Bot, ChevronDown, ImagePlus } from 'lucide-react';
+import { Bot, ChevronDown, ImagePlus, Loader2 } from 'lucide-react';
 import { STYLES } from '../data';
 
-export function ToolInterface() {
+interface ToolInterfaceProps {
+  onImageGenerated: (url: string) => void;
+}
+
+export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
   const [selectedStyle, setSelectedStyle] = useState<string>('ghibli');
   const [customizePrompt, setCustomizePrompt] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [generationCount, setGenerationCount] = useState(0);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
+      setErrorMsg('');
     }
   };
 
-  const handleGenerate = () => {
-    if (generationCount < 3) {
-      setGenerationCount(prev => prev + 1);
-      // Logic for generation goes here
+  const handleGenerate = async () => {
+    if (generationCount >= 3 || !selectedFile) return;
+    
+    setIsGenerating(true);
+    setErrorMsg('');
+    try {
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+      formData.append('style', selectedStyle);
+
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to generate image');
+      }
+
+      const data = await response.json();
+      if (data.imageUrl) {
+        onImageGenerated(data.imageUrl);
+        setGenerationCount(prev => prev + 1);
+      } else {
+        throw new Error('Invalid response from server');
+      }
+    } catch (err: any) {
+      console.error(err);
+      setErrorMsg(err.message || 'An error occurred during generation');
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -158,16 +193,26 @@ export function ToolInterface() {
 
       {/* Generate Button */}
       <div className="flex flex-col items-center gap-2 mt-4">
+        {errorMsg && (
+          <div className="w-full p-3 rounded-xl bg-error/10 text-error text-sm font-medium">
+            {errorMsg}
+          </div>
+        )}
         <button 
-          disabled={!selectedFile || limitReached}
+          disabled={!selectedFile || limitReached || isGenerating}
           onClick={handleGenerate}
-          className={`w-full font-bold text-lg py-4 rounded-2xl transition-all duration-300 ${
-            !selectedFile || limitReached
+          className={`w-full flex justify-center items-center font-bold text-lg py-4 rounded-2xl transition-all duration-300 ${
+            !selectedFile || limitReached || isGenerating
               ? 'bg-surface-variant text-on-surface-variant/50 cursor-not-allowed'
               : 'bg-gradient-to-r from-primary to-primary-container text-on-primary cursor-pointer hover:shadow-lg hover:opacity-95 shadow-md transform hover:-translate-y-0.5' 
           }`}
         >
-          {limitReached ? 'Free Limit Reached' : 'Generate Artwork'}
+          {isGenerating ? (
+            <>
+              <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+              Generating...
+            </>
+          ) : limitReached ? 'Free Limit Reached' : 'Generate Artwork'}
         </button>
         <span className="text-xs text-on-surface-variant">
           {3 - generationCount} free generations remaining
