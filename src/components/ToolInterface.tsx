@@ -7,7 +7,7 @@ interface ToolInterfaceProps {
 }
 
 export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
-  const [selectedStyle, setSelectedStyle] = useState<string>('ghibli');
+  const [selectedStyle, setSelectedStyle] = useState<string>('mosaic');
   const [customizePrompt, setCustomizePrompt] = useState(false);
   const [customPromptText, setCustomPromptText] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);

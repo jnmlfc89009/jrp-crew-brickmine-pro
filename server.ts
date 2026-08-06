@@ -40,12 +40,12 @@ async function startServer() {
       const style = req.body.style || "lego";
       const customPrompt = req.body.customPrompt;
       const stylePrompts: Record<string, string> = {
-        ghibli: "in a Ghibli animation style but constructed entirely from Lego bricks",
-        "3d": "in a highly detailed 3D render style constructed entirely from Lego bricks",
-        clay: "in a claymation style but constructed entirely from Lego bricks",
-        anime: "in an anime style but constructed entirely from Lego bricks",
-        game: "in a retro video game style but constructed entirely from Lego bricks",
-        illustration: "in an illustration style but constructed entirely from Lego bricks",
+        mosaic: "in a 2D tile mosaic style but constructed entirely from Lego bricks",
+        miniature: "in a tilt-shift miniature photography style constructed entirely from Lego bricks",
+        "3d-diorama": "as an isometric 3D diorama constructed entirely from Lego bricks",
+        cinematic: "in a highly cinematic lighting style constructed entirely from Lego bricks",
+        toy: "in a bright, playful toy photography style constructed entirely from Lego bricks",
+        retro: "in a retro 80s vintage style constructed entirely from Lego bricks",
       };
 
       const promptStyle = stylePrompts[style] || "constructed entirely from Lego bricks";
