@@ -8,4 +8,9 @@ export const STYLES = [
   { id: 'illustration', label: 'Illustration', src: 'https://lh3.googleusercontent.com/aida/AP1WRLtoG7UwCI4ENOY99wG1Zb2mJ_zJ1xCD_ZTU3xLRc7IeLsNP_64dl7YiJfWEjoy6tX0CpNvocSqZhE7qkwQ8ugLCF9qeGSXiFxPWvg2oNzFDA7x1wN3rnnzM0e1aO34bNxWTII0two_jGPxjq-9ro6G2yCUnHyNwy8tjKDrOW9pqCWaPYgLCon0ptReRavoo2CMRa6c0Xv0szV9ZRNWjQQmTVVA5Vpt_B485zckXcRLiKIqFnX5WIivC9bs' }
 ];
 
-export const SAMPLE_IMAGE = '/sample-lego.png';
+export const SAMPLE_IMAGES = [
+  '/sample-lego.png',
+  '/sample-lego2.png',
+  '/sample-lego.png', // Duplicated to fill 2x2 grid
+  '/sample-lego2.png' // Duplicated to fill 2x2 grid
+];
