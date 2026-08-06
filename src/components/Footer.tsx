@@ -45,7 +45,7 @@ export function Footer() {
       </div>
       <div className="w-full border-t border-outline/20 py-6 text-center">
         <p className="text-xs text-on-surface-variant">
-          © {new Date().getFullYear()} JRP Crew. All rights reserved. Not affiliated with the LEGO Group.
+          © {new Date().getFullYear()} JRP Crew. All rights reserved.
         </p>
       </div>
     </footer>

@@ -37,22 +37,22 @@ async function startServer() {
         return res.status(400).json({ error: "No image file provided" });
       }
 
-      const style = req.body.style || "lego";
+      const style = req.body.style || "brick";
       const customPrompt = req.body.customPrompt;
       const stylePrompts: Record<string, string> = {
-        mosaic: "in a 2D tile mosaic style but constructed entirely from Lego bricks",
-        miniature: "in a tilt-shift miniature photography style constructed entirely from Lego bricks",
-        "3d-diorama": "as an isometric 3D diorama constructed entirely from Lego bricks",
-        cinematic: "in a highly cinematic lighting style constructed entirely from Lego bricks",
-        toy: "in a bright, playful toy photography style constructed entirely from Lego bricks",
-        retro: "in a retro 80s vintage style constructed entirely from Lego bricks",
+        mosaic: "in a 2D tile mosaic style but constructed entirely from Brick bricks",
+        miniature: "in a tilt-shift miniature photography style constructed entirely from Brick bricks",
+        "3d-diorama": "as an isometric 3D diorama constructed entirely from Brick bricks",
+        cinematic: "in a highly cinematic lighting style constructed entirely from Brick bricks",
+        toy: "in a bright, playful toy photography style constructed entirely from Brick bricks",
+        retro: "in a retro 80s vintage style constructed entirely from Brick bricks",
       };
 
-      const promptStyle = stylePrompts[style] || "constructed entirely from Lego bricks";
+      const promptStyle = stylePrompts[style] || "constructed entirely from Brick bricks";
       let prompt = `Reimagine this image ${promptStyle}. Keep the original subject and composition but make it look like it's built out of realistic, interlocking plastic toy bricks. Make the colors vibrant.`;
 
       if (customPrompt) {
-        prompt = `Reimagine this image constructed entirely from Lego bricks. ${customPrompt}`;
+        prompt = `Reimagine this image constructed entirely from Brick bricks. ${customPrompt}`;
       }
 
       const base64ImageData = req.file.buffer.toString("base64");

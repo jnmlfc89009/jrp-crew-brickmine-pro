@@ -19,9 +19,9 @@ export default function App() {
       <main className="flex-grow flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full gap-16">
         <section className="w-full text-center space-y-6 mt-4">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight text-on-surface font-headline tracking-tight">
-            <span className="text-tertiary">Photo</span> to <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-br from-secondary to-tertiary">Lego</span>
+            <span className="text-tertiary">Photo</span> to <span className="text-secondary bg-clip-text text-transparent bg-gradient-to-br from-secondary to-tertiary">Brick</span>
             <br />
-            <span className="text-2xl md:text-4xl font-semibold mt-3 block text-on-surface-variant">Turn Any Photo into Lego Art</span>
+            <span className="text-2xl md:text-4xl font-semibold mt-3 block text-on-surface-variant">Turn Any Photo into Brick Art</span>
           </h1>
           <p className="text-on-surface-variant max-w-2xl mx-auto text-lg leading-relaxed mt-6">
             Unleash your inner master builder! JRP Crew - Brickmine magically transforms your photos into stunning, brick-tastic masterpieces. Snap, upload, and watch your world get built brick by brick!

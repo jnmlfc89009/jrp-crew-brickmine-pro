@@ -20,7 +20,7 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
         
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold font-headline text-on-surface mb-2">Welcome Back</h2>
-          <p className="text-on-surface-variant text-sm">Log in to save your Lego artworks and increase your generation limit.</p>
+          <p className="text-on-surface-variant text-sm">Log in to save your Brick artworks and increase your generation limit.</p>
         </div>
 
         <div className="space-y-4">

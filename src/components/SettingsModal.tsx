@@ -82,7 +82,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                   <p className="text-xs text-on-surface-variant">Starting style for new generations</p>
                 </div>
                 <select className="bg-surface border border-outline-variant text-on-surface text-sm rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
-                  <option>Lego</option>
+                  <option>Brick</option>
                   <option>Ghibli</option>
                   <option>3D Render</option>
                   <option>Claymation</option>

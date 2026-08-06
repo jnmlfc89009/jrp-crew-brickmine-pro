@@ -9,7 +9,7 @@ export function SampleImage({ src }: { src?: string }) {
         <div className="w-full rounded-2xl overflow-hidden shadow-lg border border-outline-variant">
           <img
             src={src}
-            alt="Lego Transformation"
+            alt="Brick Transformation"
             className="w-full h-auto object-cover"
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
@@ -40,7 +40,7 @@ export function SampleImage({ src }: { src?: string }) {
             <div className="w-full flex-1 rounded-2xl overflow-hidden shadow-md border border-outline-variant">
               <img
                 src={pair.generated}
-                alt={`Lego Transformation ${index + 1}`}
+                alt={`Brick Transformation ${index + 1}`}
                 className="w-full h-auto object-cover aspect-square"
                 crossOrigin="anonymous"
                 referrerPolicy="no-referrer"
