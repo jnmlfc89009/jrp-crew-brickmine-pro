@@ -55,7 +55,7 @@ async function startServer() {
 
       const ai = getGenAI();
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite-image",
+        model: "gemini-3.1-flash-lite",
         contents: {
           parts: [
             {
