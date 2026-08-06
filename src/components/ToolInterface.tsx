@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Bot, ChevronDown, ImagePlus, Loader2 } from 'lucide-react';
 import { STYLES } from '../data';
 
@@ -141,7 +141,7 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
                     />
                   ) : (
                     <span className="text-xs text-on-secondary-container text-center leading-tight whitespace-pre-line font-bold">
-                      {style.placeholder}
+                      {style.label}
                     </span>
                   )}
                 </div>
