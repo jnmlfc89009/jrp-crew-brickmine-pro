@@ -6,6 +6,12 @@ export function DisqusComments() {
     const disqusCountId = 'dsq-count-scr';
     const d = document;
 
+    // Optional: Setup Disqus config before loading the script
+    (window as any).disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = window.location.pathname;
+    };
+
     if (!d.getElementById(disqusEmbedId)) {
       const s = d.createElement('script');
       s.id = disqusEmbedId;
