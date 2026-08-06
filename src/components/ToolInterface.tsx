@@ -9,6 +9,7 @@ interface ToolInterfaceProps {
 export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
   const [selectedStyle, setSelectedStyle] = useState<string>('ghibli');
   const [customizePrompt, setCustomizePrompt] = useState(false);
+  const [customPromptText, setCustomPromptText] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [generationCount, setGenerationCount] = useState(0);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -31,6 +32,7 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
       const formData = new FormData();
       formData.append('image', selectedFile);
       formData.append('style', selectedStyle);
+      formData.append('customPrompt', customizePrompt ? customPromptText : '');
 
       const response = await fetch('/api/generate', {
         method: 'POST',
@@ -189,6 +191,16 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
             />
           </button>
         </div>
+        {customizePrompt && (
+          <div className="mt-2">
+            <textarea
+              value={customPromptText}
+              onChange={(e) => setCustomPromptText(e.target.value)}
+              placeholder="E.g., Make it look like a rainy day in a cyberpunk city..."
+              className="w-full px-4 py-3 text-sm border border-outline-variant focus:outline-none focus:ring-primary focus:border-primary rounded-xl bg-surface-container-low text-on-surface resize-y min-h-[80px]"
+            />
+          </div>
+        )}
       </div>
 
       {/* Generate Button */}

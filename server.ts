@@ -38,6 +38,7 @@ async function startServer() {
       }
 
       const style = req.body.style || "lego";
+      const customPrompt = req.body.customPrompt;
       const stylePrompts: Record<string, string> = {
         ghibli: "in a Ghibli animation style but constructed entirely from Lego bricks",
         "3d": "in a highly detailed 3D render style constructed entirely from Lego bricks",
@@ -48,7 +49,11 @@ async function startServer() {
       };
 
       const promptStyle = stylePrompts[style] || "constructed entirely from Lego bricks";
-      const prompt = `Reimagine this image ${promptStyle}. Keep the original subject and composition but make it look like it's built out of realistic, interlocking plastic toy bricks. Make the colors vibrant.`;
+      let prompt = `Reimagine this image ${promptStyle}. Keep the original subject and composition but make it look like it's built out of realistic, interlocking plastic toy bricks. Make the colors vibrant.`;
+
+      if (customPrompt) {
+        prompt = `Reimagine this image constructed entirely from Lego bricks. ${customPrompt}`;
+      }
 
       const base64ImageData = req.file.buffer.toString("base64");
       const mimeType = req.file.mimetype;
