@@ -29,14 +29,23 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
     setIsGenerating(true);
     setErrorMsg('');
     try {
-      const formData = new FormData();
-      formData.append('image', selectedFile);
-      formData.append('style', selectedStyle);
-      formData.append('customPrompt', customizePrompt ? customPromptText : '');
+      const base64Image = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+      });
 
       const response = await fetch('/api/generate', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          image: base64Image,
+          style: selectedStyle,
+          customPrompt: customizePrompt ? customPromptText : ''
+        }),
       });
 
       if (!response.ok) {

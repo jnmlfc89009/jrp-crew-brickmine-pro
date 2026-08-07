@@ -21,17 +21,25 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  app.use(express.json());
+  app.use(express.json({ limit: "20mb" }));
 
   // API routes
-  app.post("/api/generate", upload.single("image"), async (req, res) => {
+  app.post("/api/generate", async (req, res) => {
     try {
-      if (!req.file) {
+      const { image, style = "brick", customPrompt } = req.body;
+      
+      if (!image) {
         return res.status(400).json({ error: "No image file provided" });
       }
 
-      const style = req.body.style || "brick";
-      const customPrompt = req.body.customPrompt;
+      // Extract base64 data and mime type from data URL
+      const matches = image.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+      if (!matches || matches.length !== 3) {
+        return res.status(400).json({ error: "Invalid image format" });
+      }
+      const mimeType = matches[1];
+      const base64Data = matches[2];
+      const imageBuffer = Buffer.from(base64Data, "base64");
       const stylePrompts: Record<string, string> = {
         mosaic: "in a 2D tile mosaic style but constructed entirely from Brick bricks",
         miniature: "in a tilt-shift miniature photography style constructed entirely from Brick bricks",
@@ -49,7 +57,7 @@ async function startServer() {
       }
 
       const hf = getHf();
-      const imageBlob = new Blob([req.file.buffer], { type: req.file.mimetype });
+      const imageBlob = new Blob([imageBuffer], { type: mimeType });
       
       const responseBlob = await hf.imageToImage({
         model: "timbrooks/instruct-pix2pix",
