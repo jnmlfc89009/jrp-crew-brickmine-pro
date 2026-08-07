@@ -60,7 +60,7 @@ async function startServer() {
       const imageBlob = new Blob([imageBuffer], { type: mimeType });
       
       const responseBlob = await hf.imageToImage({
-        model: "timbrooks/instruct-pix2pix",
+        model: "Qwen/Qwen-Image-Edit",
         inputs: imageBlob,
         parameters: {
           prompt: prompt,
