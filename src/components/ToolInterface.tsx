@@ -32,7 +32,35 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
       const base64Image = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
-        reader.onload = () => resolve(reader.result as string);
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            const maxDim = 800; // Resize to max 800px to ensure base64 payload is < 4.5MB for Vercel
+            
+            if (width > height && width > maxDim) {
+              height *= maxDim / width;
+              width = maxDim;
+            } else if (height > maxDim) {
+              width *= maxDim / height;
+              height = maxDim;
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.drawImage(img, 0, 0, width, height);
+              resolve(canvas.toDataURL('image/jpeg', 0.8));
+            } else {
+              resolve(reader.result as string); // fallback
+            }
+          };
+          img.onerror = error => reject(error);
+          img.src = e.target?.result as string;
+        };
         reader.onerror = error => reject(error);
       });
 
