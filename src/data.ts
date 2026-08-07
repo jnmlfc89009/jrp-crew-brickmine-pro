@@ -8,6 +8,6 @@ export const STYLES = [
 ];
 
 export const SAMPLE_IMAGE_PAIRS = [
-  { original: 'https://images.unsplash.com/photo-1520697830682-898295a04ce2?q=80&w=800&auto=format&fit=crop', generated: 'https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?q=80&w=800&auto=format&fit=crop' },
-  { original: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=800&auto=format&fit=crop', generated: 'https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?q=80&w=800&auto=format&fit=crop' }
+  { original: '/sample-original2.png', generated: '/sample-lego2.png' },
+  { original: '/sample-original3.png', generated: '/sample-lego3.png' }
 ];
