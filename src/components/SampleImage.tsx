@@ -11,8 +11,6 @@ export function SampleImage({ src }: { src?: string }) {
             src={src}
             alt="Brick Transformation"
             className="w-full h-auto object-cover"
-            crossOrigin="anonymous"
-            referrerPolicy="no-referrer"
           />
         </div>
       </section>
@@ -30,8 +28,6 @@ export function SampleImage({ src }: { src?: string }) {
                 src={pair.original}
                 alt={`Original ${index + 1}`}
                 className="w-full h-auto object-cover aspect-square"
-                crossOrigin="anonymous"
-                referrerPolicy="no-referrer"
               />
             </div>
             <div className="flex-shrink-0 flex flex-col items-center justify-center bg-surface-container rounded-full p-2 sm:p-3 shadow-sm border border-outline-variant">
@@ -42,8 +38,6 @@ export function SampleImage({ src }: { src?: string }) {
                 src={pair.generated}
                 alt={`Brick Transformation ${index + 1}`}
                 className="w-full h-auto object-cover aspect-square"
-                crossOrigin="anonymous"
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>

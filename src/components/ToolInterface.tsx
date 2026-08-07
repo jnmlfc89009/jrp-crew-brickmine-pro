@@ -136,8 +136,6 @@ export function ToolInterface({ onImageGenerated }: ToolInterfaceProps) {
                       src={style.src} 
                       alt={style.label} 
                       className="w-full h-full object-cover" 
-                      crossOrigin="anonymous"
-                      referrerPolicy="no-referrer"
                     />
                   ) : (
                     <span className="text-xs text-on-secondary-container text-center leading-tight whitespace-pre-line font-bold">

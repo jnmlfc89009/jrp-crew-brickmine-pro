@@ -9,5 +9,5 @@ export const STYLES = [
 
 export const SAMPLE_IMAGE_PAIRS = [
   { original: '/sample-original2.png', generated: '/sample-lego2.png' },
-  { original: '/sample-orignal3.png', generated: '/sample-lego3.png' }
+  { original: '/sample-original3.png', generated: '/sample-lego3.png' }
 ];

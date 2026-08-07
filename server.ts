@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import multer from "multer";
-import { GoogleGenAI } from "@google/genai";
+import { HfInference } from "@huggingface/inference";
 import { createServer as createViteServer } from "vite";
 
 const upload = multer({
@@ -9,19 +9,12 @@ const upload = multer({
   limits: { fileSize: 20 * 1024 * 1024 }, // 20MB limit
 });
 
-const getGenAI = () => {
-  const apiKey = process.env.GEMINI_API_KEY;
+const getHf = () => {
+  const apiKey = process.env.HUGGINGFACE_API_KEY;
   if (!apiKey) {
-    throw new Error("GEMINI_API_KEY environment variable is required");
+    throw new Error("HUGGINGFACE_API_KEY environment variable is required");
   }
-  return new GoogleGenAI({
-    apiKey,
-    httpOptions: {
-      headers: {
-        "User-Agent": "aistudio-build",
-      },
-    },
-  });
+  return new HfInference(apiKey);
 };
 
 async function startServer() {
@@ -55,35 +48,20 @@ async function startServer() {
         prompt = `Reimagine this image constructed entirely from Brick bricks. ${customPrompt}`;
       }
 
-      const base64ImageData = req.file.buffer.toString("base64");
-      const mimeType = req.file.mimetype;
-
-      const ai = getGenAI();
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite-image",
-        contents: {
-          parts: [
-            {
-              inlineData: {
-                data: base64ImageData,
-                mimeType: mimeType,
-              },
-            },
-            {
-              text: prompt,
-            },
-          ],
+      const hf = getHf();
+      const imageBlob = new Blob([req.file.buffer], { type: req.file.mimetype });
+      
+      const responseBlob = await hf.imageToImage({
+        model: "timbrooks/instruct-pix2pix",
+        inputs: imageBlob,
+        parameters: {
+          prompt: prompt,
         },
       });
 
-      let generatedImageUrl = null;
-      for (const part of response.candidates?.[0]?.content?.parts || []) {
-        if (part.inlineData) {
-          const base64EncodeString = part.inlineData.data;
-          generatedImageUrl = `data:image/png;base64,${base64EncodeString}`;
-          break;
-        }
-      }
+      const buffer = Buffer.from(await responseBlob.arrayBuffer());
+      const base64EncodeString = buffer.toString("base64");
+      const generatedImageUrl = `data:${responseBlob.type};base64,${base64EncodeString}`;
 
       if (generatedImageUrl) {
         res.json({ imageUrl: generatedImageUrl });
